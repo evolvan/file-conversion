@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>File Conversion Evolvan</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="Scripts/jquery-3.1.1.min.js"></script>
+    <script src="Scripts/jquery.form.min.js"></script>
+</head>
+<body>
+    <div class="upper-div">
+      <h1>Please Upload Your File</h1>
+      <form id="frmUploader" enctype="multipart/form-data" action="/uploadfile" method="post">
+          <input type="file" name="imgUploader" multiple />
+          <button type="submit" name="submit" id="btnSubmit" value="Upload" >Submit</button>
+      </form>
+    </div>
+
+    <div class="middle-div">
+      <h1>Download Uploaded File</h1>
+
+      <% for(var i=0; i < fileName.length > 0; i++) {%>
+       <div class="inner-content">
+           <p><%= fileName[i] %></p>
+               <form action="/download/<%= fileName[i] %>" method="GET">
+                 Choose Converting Format : <select class="fileFormat" name="fileExt" onchange="getSelectedValue();">
+                     <option value=".pdf">.pdf</option>
+                     <option value=".docx">.docx</option>
+                     <option value=".json">.json</option>
+                     <option value=".txt">.txt</option>
+                 </select>
+                <button type="submit" value="Download" id="btnDownload">Download</button>
+              </form>
+       </div>
+
+      <% } %>
+    </div>
+</body>
+</html>
