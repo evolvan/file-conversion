@@ -1,0 +1,32 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.upper-div{
+  background-color: #e52165 ;
+  color: #fff;
+  padding: 1.5em;
+}
+.upper-div #btnSubmit{
+  padding: .5em 2em;
+  background-color: #0d1137;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+}
+.middle-div{
+  padding: 1.5em;
+  color: #fff;
+  background-color:  #0d1137;
+}
+.middle-div #btnDownload{
+  padding: .5em 2em;
+  background-color: #e52165;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+}
+.middle-div .inner-content{
+  margin-bottom: 1em;
+}
