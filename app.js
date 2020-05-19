@@ -2,8 +2,11 @@ var express = require('express');
 var multer = require('multer');
 var bodyParser = require('body-parser');
 var path = require('path');
+
 // var folderPath = './images';
 // var convertfolderPath = './converted-files';
+
+
 var fs = require('fs');
 let ejs = require('ejs');
 var toPdf = require("office-to-pdf");
@@ -37,22 +40,25 @@ var upload = multer({
 
 
 var CFileName = fs.readdirSync('./converted-files');
+
 app.get("/", function(req, res){
      var fileName = fs.readdirSync('./images');
      console.log(fileName);
      console.log(CFileName);
      res.render('index',{'fileName':fileName});
 });
-app.post("/uploadfile", function(req, res){
-    upload(req, res, function(err) {
-        if (err) {
-            return res.end("Something went wrong!");
-        }
-       res.redirect("/")
-    });
-});
 
-app.get('/download/:id',(req,res)=>{
+ app.post("/uploadfile", function(req, res) {
+     upload(req, res, function(err) {
+         if (err) {
+             return res.end("Something went wrong!");
+         }
+        res.redirect("/")
+     });
+ });
+
+ app.get('/download/:id',(req,res)=>{
+
    const file = `${__dirname}/images/${req.params.id}`;
    const cFileName = path.basename(file,path.extname(file));
    const fileExt = req.query.fileExt;
@@ -60,16 +66,10 @@ app.get('/download/:id',(req,res)=>{
    console.log("converted file",cFileName);
    console.log("converted file new:",CFileName);
    console.log("File Extension",fileExt);
-  //  let arr = [".pdf",".docx",".json",".txt"];
-
-// First Loop Start
-  //  for(let i=0;i<arr.length;i++){
-  //  console.log(`Array at index of ${i} : ${arr[i]}`);
 
    if('.docx'==fileExt){
        console.log("Exist");
        // Convert PDF-TO-DOC
-
        var wordBuffer = fs.readFileSync(file);
 
        toPdf(wordBuffer).then(
@@ -79,6 +79,7 @@ app.get('/download/:id',(req,res)=>{
            console.log(err);
          }
        )
+
        res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
       }
 
@@ -130,16 +131,7 @@ app.get('/download/:id',(req,res)=>{
        console.log("Doesn't Exist");
    }
 
-// for(let i=0;i<CFileName.length;i++){
-//   var ConFileName = path.basename(CFileName[i], path.extname(CFileName[i]));
-//   console.log(`CFIle index of ${i} : ${ConFileName}`);
-//   if(cFileName ===ConFileName){
-//     console.log("Sagar new :",ConFileName,cFileName);
-
-//   }
-// }
 });
-
- app.listen(2000, function(a) {
+app.listen(2000, function(a) {
      console.log("Listening to port 2000");
- });
+});

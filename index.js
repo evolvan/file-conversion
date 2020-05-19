@@ -90,6 +90,7 @@
 //   }
 // )
 // Convert TXT-to-PDF
+<<<<<<< HEAD
 // var toPdf = require("office-to-pdf");
 // var fs = require("fs");
 // var wordBuffer = fs.readFileSync("./package.json");
@@ -101,6 +102,19 @@
 //     console.log(err);
 //   }
 // )
+
+// var toPdf = require("office-to-pdf");
+// var fs = require("fs");
+// var wordBuffer = fs.readFileSync("./package.json");
+//
+// toPdf(wordBuffer).then(
+//   (pdfBuffer) => {
+//     fs.writeFileSync("./sag.pdf", pdfBuffer)
+//   }, (err) => {
+//     console.log(err);
+//   }
+// )
+
 // Convert odp-to-PDF
 // var toPdf = require("office-to-pdf");
 // var fs = require("fs");
@@ -141,6 +155,7 @@
 
 // app.listen(port,()=>{
 //     console.warn('server is Running '+port);
+
 // })
 
 // var pdfUtil = require('pdf-to-text');
@@ -160,36 +175,38 @@
 //   console.log(data); //print all text
 // });
 
-'use strict';
+// 'use strict';
+//
+// const fs = require('fs');
+// const readline = require('readline');
+//
+// function convert(file) {
+//
+//     return new Promise((resolve, reject) => {
+//
+//         const stream = fs.createReadStream(file);
+//         // Handle stream error (IE: file not found)
+//         stream.on('error', reject);
+//
+//         const reader = readline.createInterface({
+//             input: stream
+//         });
+//
+//         const array = [];
+//
+//         reader.on('line', line => {
+//             array.push(JSON.parse(line));
+//         });
+//
+//         reader.on('close', () => resolve(array));
+//     });
+// }
+//
+//
+// convert('./source.txt')
+//     .then(res => {
+//         console.log(res);
+//     })
+//     .catch(err => console.error(err));
 
-const fs = require('fs');
-const readline = require('readline');
-
-function convert(file) {
-
-    return new Promise((resolve, reject) => {
-
-        const stream = fs.createReadStream(file);
-        // Handle stream error (IE: file not found)
-        stream.on('error', reject);
-
-        const reader = readline.createInterface({
-            input: stream
-        });
-
-        const array = [];
-
-        reader.on('line', line => {
-            array.push(JSON.parse(line));
-        });
-
-        reader.on('close', () => resolve(array));
-    });
-}
-
-
-convert('./source.txt')
-    .then(res => {
-        console.log(res);
-    })
-    .catch(err => console.error(err));
+// })

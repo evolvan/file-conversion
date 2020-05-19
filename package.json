@@ -9,7 +9,8 @@
         "express": "^4.14.0",
         "multer": "^1.2.0",
         "office-to-pdf": "^4.0.0",
-        "pdf-to-text": "0.0.7"
+        "pdf-to-text": "0.0.7",
+        "office-to-pdf": "^4.0.0"
     },
     "author": {
         "name": "Sagar Kumar"
