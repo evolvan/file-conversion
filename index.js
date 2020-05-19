@@ -128,7 +128,7 @@
 
 // Convert PNG-to-JPG
 // var Jimp = require('jimp');
- 
+
 // // open a file called "lenna.png"
 // Jimp.read('./public/images/d.png', (err, lenna) => {
 //   if (err) throw err;
@@ -143,19 +143,53 @@
 //     console.warn('server is Running '+port);
 // })
 
-var pdfUtil = require('pdf-to-text');
-var pdf_path = "absolute_path/to/pdf_file.pdf";
+// var pdfUtil = require('pdf-to-text');
+// var pdf_path = "absolute_path/to/pdf_file.pdf";
+//
+// //option to extract text from page 0 to 10
+// var option = {from: 0, to: 10};
+//
+// pdfUtil.pdfToText(pdf_path, option, function(err, data) {
+//   if (err) throw(err);
+//   console.log(data); //print text
+// });
+//
+// //Omit option to extract all text from the pdf file
+// pdfUtil.pdfToText(pdf_path, function(err, data) {
+//   if (err) throw(err);
+//   console.log(data); //print all text
+// });
 
-//option to extract text from page 0 to 10
-var option = {from: 0, to: 10};
+'use strict';
 
-pdfUtil.pdfToText(pdf_path, option, function(err, data) {
-  if (err) throw(err);
-  console.log(data); //print text    
-});
+const fs = require('fs');
+const readline = require('readline');
 
-//Omit option to extract all text from the pdf file
-pdfUtil.pdfToText(pdf_path, function(err, data) {
-  if (err) throw(err);
-  console.log(data); //print all text    
-});
+function convert(file) {
+
+    return new Promise((resolve, reject) => {
+
+        const stream = fs.createReadStream(file);
+        // Handle stream error (IE: file not found)
+        stream.on('error', reject);
+
+        const reader = readline.createInterface({
+            input: stream
+        });
+
+        const array = [];
+
+        reader.on('line', line => {
+            array.push(JSON.parse(line));
+        });
+
+        reader.on('close', () => resolve(array));
+    });
+}
+
+
+convert('./source.txt')
+    .then(res => {
+        console.log(res);
+    })
+    .catch(err => console.error(err));
