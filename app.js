@@ -2,6 +2,7 @@ var express = require('express');
 var multer = require('multer');
 var bodyParser = require('body-parser');
 var path = require('path');
+var pdfUtil = require('pdf-to-text');
 
 // var folderPath = './images';
 // var convertfolderPath = './converted-files';
@@ -67,21 +68,21 @@ app.get("/", function(req, res){
    console.log("converted file new:",CFileName);
    console.log("File Extension",fileExt);
 
-   if('.docx'==fileExt){
-       console.log("Exist");
-       // Convert PDF-TO-DOC
-       var wordBuffer = fs.readFileSync(file);
+    if('.docx'==fileExt){
+      console.log("Exist");
+      // Convert PDF-TO-DOC
+      var wordBuffer = fs.readFileSync(file);
 
-       toPdf(wordBuffer).then(
-         (docBuffer) => {
-           fs.writeFileSync(`${__dirname}/converted-files/${cFileName}.docx`, docBuffer)
-         }, (err) => {
-           console.log(err);
-         }
-       )
-
-       res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
-      }
+      toPdf(wordBuffer).then(
+        (docBuffer) => {
+          fs.writeFileSync(`${__dirname}/converted-files/${cFileName}.docx`, docBuffer);
+          res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+        }, (err) => {
+            console.log(err);
+            res.status(500).send(err);
+        }
+      )
+    }
 
        // End Convert PDF-TO-DOC
     else if('.pdf'==fileExt){
@@ -92,12 +93,13 @@ app.get("/", function(req, res){
 
         toPdf(wordBuffer).then(
           (pdfBuffer) => {
-            fs.writeFileSync(`${__dirname}/converted-files/${cFileName}.pdf`, pdfBuffer)
+            fs.writeFileSync(`${__dirname}/converted-files/${cFileName}.pdf`, pdfBuffer);
+            res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
           }, (err) => {
             console.log(err);
+            res.status(500).send(err);
           }
         )
-        res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
 
       }
         // End Convert any-to-PDF
@@ -105,25 +107,25 @@ app.get("/", function(req, res){
         //Convert pdf-to-TXT
         else if('.txt'==fileExt){
           console.log("Exist");
-
-        var pdfUtil = require('pdf-to-text');
         // var pdf_path = "absolute_path/to/pdf_file.pdf";
 
         //option to extract text from page 0 to 10
         var option = {from: 0, to: 10};
 
         pdfUtil.pdfToText(file, option, function(err, data) {
-          if (err) throw(err);
+          if (err) {
+            return res.status(500).send(err);
+          };
           // console.log(data); //print text
+          return res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
         });
 
-        //Omit option to extract all text from the pdf file
-        pdfUtil.pdfToText(file, function(err, data) {
-          if (err) throw(err);
-          // console.log(data); //print all text
-          fs.writeFileSync(`${__dirname}/converted-files/${cFileName}.txt`,data);
-        });
-        res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+        // //Omit option to extract all text from the pdf file
+        // pdfUtil.pdfToText(file, function(err, data) {
+        //   if (err) throw(err);
+        //   // console.log(data); //print all text
+        //   fs.writeFileSync(`${__dirname}/converted-files/${cFileName}.txt`,data);
+        // });
       }
       // End Convert pdf-to-TXT
 
