@@ -3,17 +3,12 @@ var multer = require('multer');
 var bodyParser = require('body-parser');
 var path = require('path');
 var pdfUtil = require('pdf-to-text');
-
-// var folderPath = './images';
-// var convertfolderPath = './converted-files';
-
-
 var fs = require('fs');
-let ejs = require('ejs');
+var ejs = require('ejs');
 var toPdf = require("office-to-pdf");
-
-
+var Jimp = require('jimp');
 var app = express();
+var tabula = require('tabula-js');
 
 app.set('view engine','ejs');
 
@@ -61,13 +56,32 @@ app.get("/", function(req, res){
  app.get('/download/:id',(req,res)=>{
 
    const file = `${__dirname}/images/${req.params.id}`;
+   const basename = path.basename(file);
    const cFileName = path.basename(file,path.extname(file));
    const fileExt = req.query.fileExt;
    console.log("File",file);
    console.log("converted file",cFileName);
    console.log("converted file new:",CFileName);
    console.log("File Extension",fileExt);
+   console.log("BaseName :",basename);
 
+    if('.doc'==fileExt){
+      console.log("Exist");
+      // Convert PDF-TO-DOCX
+      var wordBuffer = fs.readFileSync(file);
+
+      toPdf(wordBuffer).then(
+        (docBuffer) => {
+          fs.writeFileSync(`${__dirname}/converted-files/${cFileName}.doc`, docBuffer);
+          res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+        }, (err) => {
+            console.log(err);
+            res.status(500).send(err);
+        }
+      )
+    }
+
+    // End convert pdf to DOCX
     if('.docx'==fileExt){
       console.log("Exist");
       // Convert PDF-TO-DOC
@@ -107,28 +121,44 @@ app.get("/", function(req, res){
         //Convert pdf-to-TXT
         else if('.txt'==fileExt){
           console.log("Exist");
-        // var pdf_path = "absolute_path/to/pdf_file.pdf";
 
         //option to extract text from page 0 to 10
         var option = {from: 0, to: 10};
 
-        pdfUtil.pdfToText(file, option, function(err, data) {
-          if (err) {
-            return res.status(500).send(err);
-          };
-          // console.log(data); //print text
-          return res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
-        });
-
         // //Omit option to extract all text from the pdf file
-        // pdfUtil.pdfToText(file, function(err, data) {
-        //   if (err) throw(err);
-        //   // console.log(data); //print all text
-        //   fs.writeFileSync(`${__dirname}/converted-files/${cFileName}.txt`,data);
-        // });
+        pdfUtil.pdfToText(file, option, function(err, data) {
+          if (err) throw(err);
+          fs.writeFileSync(`${__dirname}/converted-files/${cFileName}.txt`,data);
+          res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+        });
       }
       // End Convert pdf-to-TXT
 
+      // Convert PDF-TO-CSV
+      else if('.csv'==fileExt){
+        var t = tabula(`${basename}${fileExt}`);
+        console.log("i am boss :::",t);
+        t.extractCsv((err, data) =>{
+          fs.writeFileSync(`${__dirname}/converted-files/${cFileName}.csv`,data);
+          console.log(data);
+          res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+        });
+      }
+      // End Convert PDF-TO-CSV
+
+      // Convert PNG-to-JPG
+      else if('.jpg'==fileExt){
+        console.log("Exist");
+      Jimp.read(file, (err, lenna) => {
+        if (err) throw err;
+        lenna
+          .resize(600, 500) // resize
+          .quality(60) // set JPEG quality
+          .greyscale() // set greyscale
+          .write(`${__dirname}/converted-files/${cFileName}.jpg`); // save
+          res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+        });
+      }
    else{
        console.log("Doesn't Exist");
    }
