@@ -9,6 +9,7 @@ var toPdf = require("office-to-pdf");
 var Jimp = require('jimp');
 var app = express();
 var tabula = require('tabula-js');
+var libre = require('libreoffice-convert');
 
 app.set('view engine','ejs');
 
@@ -59,11 +60,6 @@ app.get("/", function(req, res){
    const basename = path.basename(file);
    const cFileName = path.basename(file,path.extname(file));
    const fileExt = req.query.fileExt;
-   console.log("File",file);
-   console.log("converted file",cFileName);
-   console.log("converted file new:",CFileName);
-   console.log("File Extension",fileExt);
-   console.log("BaseName :",basename);
 
     if('.doc'==fileExt){
       console.log("Exist");
@@ -137,7 +133,7 @@ app.get("/", function(req, res){
       // Convert PDF-TO-CSV
       else if('.csv'==fileExt){
         var t = tabula(`${basename}${fileExt}`);
-        console.log("i am boss :::",t);
+        console.log("i am boss :",t);
         t.extractCsv((err, data) =>{
           fs.writeFileSync(`${__dirname}/converted-files/${cFileName}.csv`,data);
           console.log(data);
@@ -157,6 +153,104 @@ app.get("/", function(req, res){
           .greyscale() // set greyscale
           .write(`${__dirname}/converted-files/${cFileName}.jpg`); // save
           res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+        });
+      }
+      // Convert in ODT format
+      else if('.odt'==fileExt){
+        // Read file
+        const readingFile = fs.readFileSync(file);
+        // Convert it to pdf format with undefined filter (see Libreoffice doc about filter)
+        libre.convert(readingFile, fileExt, undefined, (err, done) => {
+            if (err) {
+              console.log(`Error converting file: ${err}`);
+            }
+            // Here in done you have pdf file which you can save or transfer in another stream
+            fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,done);
+            res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+        });
+      }
+      // convert in xlsm
+      else if('.xlsm'==fileExt){
+        // Read file
+        const readingFile = fs.readFileSync(file);
+        // Convert it to pdf format with undefined filter (see Libreoffice doc about filter)
+        libre.convert(readingFile, fileExt, undefined, (err, done) => {
+            if (err) {
+              console.log(`Error converting file: ${err}`);
+            }
+            // Here in done you have pdf file which you can save or transfer in another stream
+            fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,done);
+            res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+        });
+      }
+      // convert in xlsx
+      else if('.xlsx'==fileExt){
+        // Read file
+        const readingFile = fs.readFileSync(file);
+        // Convert it to pdf format with undefined filter (see Libreoffice doc about filter)
+        libre.convert(readingFile, fileExt, undefined, (err, done) => {
+            if (err) {
+              console.log(`Error converting file: ${err}`);
+            }
+            // Here in done you have pdf file which you can save or transfer in another stream
+            fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,done);
+            res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+        });
+      }
+      // convert in xls
+      else if('.xls'==fileExt){
+        // Read file
+        const readingFile = fs.readFileSync(file);
+        // Convert it to pdf format with undefined filter (see Libreoffice doc about filter)
+        libre.convert(readingFile, fileExt, undefined, (err, done) => {
+            if (err) {
+              console.log(`Error converting file: ${err}`);
+            }
+            // Here in done you have pdf file which you can save or transfer in another stream
+            fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,done);
+            res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+        });
+      }
+      // convert in ods
+      else if('.ods'==fileExt){
+        // Read file
+        const readingFile = fs.readFileSync(file);
+        // Convert it to pdf format with undefined filter (see Libreoffice doc about filter)
+        libre.convert(readingFile, fileExt, undefined, (err, done) => {
+            if (err) {
+              console.log(`Error converting file: ${err}`);
+            }
+            // Here in done you have pdf file which you can save or transfer in another stream
+            fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,done);
+            res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+        });
+      }
+      // convert in rtf
+      else if('.rtf'==fileExt){
+        // Read file
+        const readingFile = fs.readFileSync(file);
+        // Convert it to pdf format with undefined filter (see Libreoffice doc about filter)
+        libre.convert(readingFile, fileExt, undefined, (err, done) => {
+            if (err) {
+              console.log(`Error converting file: ${err}`);
+            }
+            // Here in done you have pdf file which you can save or transfer in another stream
+            fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,done);
+            res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+        });
+      }
+      // convert in wpd
+      else if('.wpd'==fileExt){
+        // Read file
+        const readingFile = fs.readFileSync(file);
+        // Convert it to pdf format with undefined filter (see Libreoffice doc about filter)
+        libre.convert(readingFile, fileExt, undefined, (err, done) => {
+            if (err) {
+              console.log(`Error converting file: ${err}`);
+            }
+            // Here in done you have pdf file which you can save or transfer in another stream
+            fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,done);
+            res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
         });
       }
    else{
