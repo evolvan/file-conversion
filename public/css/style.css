@@ -7,33 +7,84 @@ body{
   max-width: 1200px;
   width: 100%;
   margin: auto;
+  height: 100vh;
   background-color:#0d1137;
 }
 
 .upper-div{
   background-color: #e52165 ;
   color: #fff;
-  padding: 1.5em;
+  width: 100%;
+  height: 500px;
+  border-right: 2px solid #fff;
+}
+.upper-div h1{
+  text-align: center;
+  border-bottom: 2px solid #fff;
+  padding-top: 1.5em;
+}
+.upper-div #frmUploader{
+  text-align: center;
+  padding-top: 10em;
+}
+.upper-div #frmUploader [type="file"]{
+  background-color: #0d1137;
+  padding: 1em;
+  border-top-right-radius: 6% 36%;
+  border-bottom-left-radius: 6% 33%;
+  cursor: pointer;
 }
 .upper-div #btnSubmit{
-  padding: .5em 2em;
+  padding: 1em 2em;
   background-color: #0d1137;
   color: #fff;
   border: none;
   font-weight: bold;
+  cursor: pointer;
+  border-bottom-left-radius: 16% 33%;
+  border-top-right-radius:14% 36%;
 }
 .middle-div{
   padding: 1.5em;
   color: #fff;
+  margin-top: .3em;
+  border-left: 2px solid #e52165;
   background-color:  #0d1137;
 }
 .middle-div #btnDownload{
-  padding: .5em 2em;
+  padding: .4em 2em;
   background-color: #e52165;
   color: #fff;
   border: none;
+
+  border-top-left-radius:15% 69%;
   font-weight: bold;
+}
+
+.middle-div #btnDownload:hover{
+  background-color: #0d1137;
+  color:#fff;
+  border:2px solid #e52165;
+  cursor: pointer;
 }
 .middle-div .inner-content{
   margin-bottom: 1em;
+  margin-top: 1em;
+}
+.fileFormat{
+  padding: .4em 2em;
+  border-top-left-radius:15% 69%;
+  background-color: #0d1137;
+  color: #fff;
+  font-weight: bold;
+  border: 2px solid #e52165;
+}
+.fileFormat:hover{
+  background-color: #e52165;
+  color:#fff;
+  border:2px solid #fff;
+  cursor: pointer;
+}
+.fileFormat option{
+  font-weight: bold;
 }

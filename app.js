@@ -148,10 +148,10 @@ app.get("/", function(req, res){
       Jimp.read(file, (err, lenna) => {
         if (err) throw err;
         lenna
-          .resize(600, 500) // resize
-          .quality(60) // set JPEG quality
-          .greyscale() // set greyscale
-          .write(`${__dirname}/converted-files/${cFileName}.jpg`); // save
+          // .resize(600, 500) // resize
+          .quality(90) // set JPEG quality
+          // .greyscale() // set greyscale
+          .write(`${__dirname}/converted-files/${cFileName}${fileExt}`); // save
           res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
         });
       }
