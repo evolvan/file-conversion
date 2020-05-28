@@ -10,6 +10,7 @@ var Jimp = require('jimp');
 var app = express();
 var tabula = require('tabula-js');
 var libre = require('libreoffice-convert');
+const officegen = require('officegen');
 
 app.set('view engine','ejs');
 
@@ -24,7 +25,7 @@ var urlencoderParser = bodyParser.urlencoded({extended: false})
 
 var Storage = multer.diskStorage({
     destination: function(req, file, callback){
-        callback(null, "./images");
+        callback(null, "./uploads");
     },
     filename: function(req, file, callback){
         callback(null,file.originalname);
@@ -39,7 +40,7 @@ var upload = multer({
 var CFileName = fs.readdirSync('./converted-files');
 
 app.get("/", function(req, res){
-     var fileName = fs.readdirSync('./images');
+     var fileName = fs.readdirSync('./uploads');
      console.log(fileName);
      console.log(CFileName);
      res.render('index',{'fileName':fileName});
@@ -56,7 +57,7 @@ app.get("/", function(req, res){
 
  app.get('/download/:id',(req,res)=>{
 
-   const file = `${__dirname}/images/${req.params.id}`;
+   const file = `${__dirname}/uploads/${req.params.id}`;
    const basename = path.basename(file);
    const cFileName = path.basename(file,path.extname(file));
    const fileExt = req.query.fileExt;
@@ -68,7 +69,7 @@ app.get("/", function(req, res){
 
       toPdf(wordBuffer).then(
         (docBuffer) => {
-          fs.writeFileSync(`${__dirname}/converted-files/${cFileName}.doc`, docBuffer);
+          fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`, docBuffer);
           res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
         }, (err) => {
             console.log(err);
@@ -85,7 +86,7 @@ app.get("/", function(req, res){
 
       toPdf(wordBuffer).then(
         (docBuffer) => {
-          fs.writeFileSync(`${__dirname}/converted-files/${cFileName}.docx`, docBuffer);
+          fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`, docBuffer);
           res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
         }, (err) => {
             console.log(err);
@@ -103,7 +104,7 @@ app.get("/", function(req, res){
 
         toPdf(wordBuffer).then(
           (pdfBuffer) => {
-            fs.writeFileSync(`${__dirname}/converted-files/${cFileName}.pdf`, pdfBuffer);
+            fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`, pdfBuffer);
             res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
           }, (err) => {
             console.log(err);
@@ -124,7 +125,7 @@ app.get("/", function(req, res){
         // //Omit option to extract all text from the pdf file
         pdfUtil.pdfToText(file, option, function(err, data) {
           if (err) throw(err);
-          fs.writeFileSync(`${__dirname}/converted-files/${cFileName}.txt`,data);
+          fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,data);
           res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
         });
       }
@@ -135,7 +136,7 @@ app.get("/", function(req, res){
         var t = tabula(`${basename}${fileExt}`);
         console.log("i am boss :",t);
         t.extractCsv((err, data) =>{
-          fs.writeFileSync(`${__dirname}/converted-files/${cFileName}.csv`,data);
+          fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,data);
           console.log(data);
           res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
         });
@@ -252,6 +253,14 @@ app.get("/", function(req, res){
             fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,done);
             res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
         });
+      }
+      // convert in ppt
+      else if('.pptx'==fileExt){
+        let pptx = officegen('pptx');
+        // Read file
+        const readingFile = fs.readFileSync(file);
+            pptx.generate(fs.createWriteStream(`${__dirname}/converted-files/${cFileName}${fileExt}`,readingFile));
+            res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
       }
    else{
        console.log("Doesn't Exist");

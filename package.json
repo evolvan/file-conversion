@@ -11,6 +11,7 @@
         "libreoffice-convert": "^1.0.5",
         "multer": "^1.2.0",
         "office-to-pdf": "^4.0.0",
+        "officegen": "^0.6.4",
         "pdf-to-text": "0.0.7",
         "tabula-js": "^1.0.1"
     },
