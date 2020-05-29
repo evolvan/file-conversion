@@ -267,6 +267,7 @@ app.get("/", function(req, res){
    }
 
 });
-app.listen(2000, function(a) {
+const port = process.env.PORT || 2000;
+app.listen(port, function(a) {
      console.log("Listening to port 2000");
 });
