@@ -4,8 +4,7 @@
     <meta charset="utf-8" />
     <title>File Conversion Evolvan</title>
     <link rel="stylesheet" href="/css/style.css">
-    <script src="Scripts/jquery-3.1.1.min.js"></script>
-    <script src="Scripts/jquery.form.min.js"></script>
+    <script src="js/main.js"></script>
 </head>
 <body>
     <div class="upper-div">
@@ -23,7 +22,7 @@
        <div class="inner-content">
            <p><%= fileName[i] %></p>
                <form action="/download/<%= fileName[i] %>" method="GET">
-                 Choose Converting Format : <select class="fileFormat" name="fileExt" onchange="getSelectedValue();">
+                 Choose Converting Format : <select class="fileFormat" id = "fileFormat"name="fileExt" onchange="getSelectedValue();">
                      <option value=".pdf">.pdf</option>
                      <option value=".docx">.docx</option>
                      <option value=".doc">.doc</option>
@@ -45,5 +44,6 @@
 
       <% } %>
     </div>
+    
 </body>
 </html>

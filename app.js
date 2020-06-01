@@ -41,8 +41,6 @@ var CFileName = fs.readdirSync('./converted-files');
 
 app.get("/", function(req, res){
      var fileName = fs.readdirSync('./uploads');
-     console.log(fileName);
-     console.log(CFileName);
      res.render('index',{'fileName':fileName});
 });
 
@@ -71,6 +69,7 @@ app.get("/", function(req, res){
         (docBuffer) => {
           fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`, docBuffer);
           res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+          fs.unlinkSync(file);
         }, (err) => {
             console.log(err);
             res.status(500).send(err);
@@ -88,6 +87,7 @@ app.get("/", function(req, res){
         (docBuffer) => {
           fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`, docBuffer);
           res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+          fs.unlinkSync(file);
         }, (err) => {
             console.log(err);
             res.status(500).send(err);
@@ -106,6 +106,7 @@ app.get("/", function(req, res){
           (pdfBuffer) => {
             fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`, pdfBuffer);
             res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+            fs.unlinkSync(file);
           }, (err) => {
             console.log(err);
             res.status(500).send(err);
@@ -127,6 +128,7 @@ app.get("/", function(req, res){
           if (err) throw(err);
           fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,data);
           res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+          fs.unlinkSync(file);
         });
       }
       // End Convert pdf-to-TXT
@@ -139,6 +141,7 @@ app.get("/", function(req, res){
           fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,data);
           console.log(data);
           res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+          fs.unlinkSync(file);
         });
       }
       // End Convert PDF-TO-CSV
@@ -154,6 +157,7 @@ app.get("/", function(req, res){
           // .greyscale() // set greyscale
           .write(`${__dirname}/converted-files/${cFileName}${fileExt}`); // save
           res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+          fs.unlinkSync(file);
         });
       }
       // Convert in ODT format
@@ -168,6 +172,7 @@ app.get("/", function(req, res){
             // Here in done you have pdf file which you can save or transfer in another stream
             fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,done);
             res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+            fs.unlinkSync(file);
         });
       }
       // convert in xlsm
@@ -182,6 +187,7 @@ app.get("/", function(req, res){
             // Here in done you have pdf file which you can save or transfer in another stream
             fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,done);
             res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+            fs.unlinkSync(file);
         });
       }
       // convert in xlsx
@@ -196,6 +202,7 @@ app.get("/", function(req, res){
             // Here in done you have pdf file which you can save or transfer in another stream
             fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,done);
             res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+            fs.unlinkSync(file);
         });
       }
       // convert in xls
@@ -210,6 +217,7 @@ app.get("/", function(req, res){
             // Here in done you have pdf file which you can save or transfer in another stream
             fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,done);
             res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+            fs.unlinkSync(file);
         });
       }
       // convert in ods
@@ -224,6 +232,7 @@ app.get("/", function(req, res){
             // Here in done you have pdf file which you can save or transfer in another stream
             fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,done);
             res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+            fs.unlinkSync(file);
         });
       }
       // convert in rtf
@@ -238,6 +247,7 @@ app.get("/", function(req, res){
             // Here in done you have pdf file which you can save or transfer in another stream
             fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,done);
             res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+            fs.unlinkSync(file);
         });
       }
       // convert in wpd
@@ -252,6 +262,7 @@ app.get("/", function(req, res){
             // Here in done you have pdf file which you can save or transfer in another stream
             fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,done);
             res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+            fs.unlinkSync(file);
         });
       }
       // convert in ppt
@@ -261,6 +272,7 @@ app.get("/", function(req, res){
         const readingFile = fs.readFileSync(file);
             pptx.generate(fs.createWriteStream(`${__dirname}/converted-files/${cFileName}${fileExt}`,readingFile));
             res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+            fs.unlinkSync(file);
       }
    else{
        console.log("Doesn't Exist");
