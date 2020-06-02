@@ -11,7 +11,13 @@
       <h1>Please Upload Your File</h1>
       <form id="frmUploader" enctype="multipart/form-data" action="/uploadfile" method="post">
           <input type="file" name="imgUploader" multiple />
-          <button type="submit" name="submit" id="btnSubmit" value="Upload" >Submit</button>
+          <button type="submit" name="submit" id="btnSubmit" value="Upload" >
+            <span></span>  
+            <span></span>  
+            <span></span>  
+            <span></span>  
+            Submit
+          </button>
       </form>
     </div>
 
@@ -20,7 +26,7 @@
 
       <% for(var i=0; i < fileName.length > 0; i++) {%>
        <div class="inner-content">
-           <p><%= fileName[i] %></p>
+           <p><%= fileName[i] %></p><br>
                <form action="/download/<%= fileName[i] %>" method="GET">
                  Choose Converting Format : <select class="fileFormat" id = "fileFormat"name="fileExt" onchange="getSelectedValue();">
                      <option value=".pdf">.pdf</option>
@@ -38,7 +44,13 @@
                      <option value=".wpd">.wpd</option>
                      <option value=".pptx">.pptx</option>
                  </select>
-                <button type="submit" value="Download" id="btnDownload">Download</button>
+                <button type="submit" value="Download" id="btnDownload">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  Download
+                </button>
               </form>
        </div><hr>
 

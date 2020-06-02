@@ -12,7 +12,7 @@ body{
 }
 
 .upper-div{
-  background-color: #e52165 ;
+  background:linear-gradient(120deg, transparent,#e52165);
   color: #fff;
   width: 100%;
   height: 500px;
@@ -20,9 +20,20 @@ body{
 }
 .upper-div h1{
   text-align: center;
-  border-bottom: 2px solid #fff;
+  /* border-bottom: 2px solid #fff; */
   padding-top: 1.5em;
+  position: relative;
+  /* animation: mymove 5s 1; */
 }
+.upper-div h1:hover{
+  animation: mymove 5s 1;
+}
+/* Header Animation Start*/
+@keyframes mymove {
+  from {left: -440px;color:#e52165;}
+  to {left: 0; color: #fff;}
+}
+/* Header Animation End */
 .upper-div #frmUploader{
   text-align: center;
   padding-top: 10em;
@@ -39,40 +50,159 @@ body{
   background-color: #0d1137;
   color: #fff;
   border: none;
+  position: relative;
   font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  overflow: hidden;
+  transition: 0.2s;
   cursor: pointer;
   border-bottom-left-radius: 16% 33%;
   border-top-right-radius:14% 36%;
 }
+/* Submit Button Animation Start */
+.upper-div #btnSubmit:hover{
+  color: #e52165;
+  background:#fff;
+  box-shadow: 0 0 10px #e52165, 0 0 40px #e52165, 0 0 80px #e52165;
+  transition-delay: 1s;
+}
+.upper-div #btnSubmit span{
+  position: absolute;
+  display: block;
+}
+.upper-div #btnSubmit span:nth-child(1){
+  top:0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent,#fff);
+}
+.upper-div #btnSubmit:hover span:nth-child(1){
+  left: 100%;
+  transition: 1s;
+}
+.upper-div #btnSubmit span:nth-child(3){
+  bottom:0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent,#fff);
+}
+.upper-div #btnSubmit:hover span:nth-child(3){
+  right: 100%;
+  transition: 1s;
+  transition-delay: 0.5s;
+}
+.upper-div #btnSubmit span:nth-child(2){
+  top:-100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent,#fff);
+}
+.upper-div #btnSubmit:hover span:nth-child(2){
+  top: 100%;
+  transition: 1s;
+  transition-delay: 0.5s;
+}
+.upper-div #btnSubmit span:nth-child(4){
+  bottom:-100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent,#fff);
+}
+.upper-div #btnSubmit:hover span:nth-child(4){
+  bottom: 100%;
+  transition: 1s;
+  transition-delay: 0.75s;
+}
+/* Submit Button Animation End */
 .middle-div{
   padding: 1.5em;
   color: #fff;
   margin-top: .3em;
   border-left: 2px solid #e52165;
-  background-color:  #0d1137;
 }
 .middle-div #btnDownload{
-  padding: .4em 2em;
+  padding: 1em 2em;
   background-color: #e52165;
   color: #fff;
   border: none;
-
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  overflow: hidden;
+  transition: 0.2s;
+  position: relative;
   border-top-left-radius:15% 69%;
   font-weight: bold;
 }
-
+/* Download Button Animation Start */
 .middle-div #btnDownload:hover{
-  background-color: #0d1137;
-  color:#fff;
-  border:2px solid #e52165;
-  cursor: pointer;
+  color: #e52165;
+  background:#fff;
+  box-shadow: 0 0 10px #e52165, 0 0 40px #e52165, 0 0 80px #e52165;
+  transition-delay: 1s;
 }
+.middle-div #btnDownload span{
+  position: absolute;
+  display: block;
+}
+.middle-div #btnDownload span:nth-child(1){
+  top:0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent,#fff);
+}
+.middle-div #btnDownload:hover span:nth-child(1){
+  left: 100%;
+  transition: 1s;
+}
+.middle-div #btnDownload span:nth-child(3){
+  bottom:0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent,#fff);
+}
+.middle-div #btnDownload:hover span:nth-child(3){
+  right: 100%;
+  transition: 1s;
+  transition-delay: 0.5s;
+}
+.middle-div #btnDownload span:nth-child(2){
+  top:-100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent,#fff);
+}
+.middle-div #btnDownload:hover span:nth-child(2){
+  top: 100%;
+  transition: 1s;
+  transition-delay: 0.5s;
+}
+.middle-div #btnDownload span:nth-child(4){
+  bottom:-100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent,#fff);
+}
+.middle-div #btnDownload:hover span:nth-child(4){
+  bottom: 100%;
+  transition: 1s;
+  transition-delay: 0.75s;
+}
+/* Download Button Animation End */
 .middle-div .inner-content{
   margin-bottom: 1em;
   margin-top: 1em;
 }
 .fileFormat{
-  padding: .4em 2em;
+  padding: 0.8em 2em;
   border-top-left-radius:15% 69%;
   background-color: #0d1137;
   color: #fff;
