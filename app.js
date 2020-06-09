@@ -61,7 +61,6 @@ app.get("/", function(req, res){
    const fileExt = req.query.fileExt;
 
     if('.doc'==fileExt){
-      console.log("Exist");
       // Convert PDF-TO-DOCX
       var wordBuffer = fs.readFileSync(file);
 
@@ -155,9 +154,15 @@ app.get("/", function(req, res){
           // .resize(600, 500) // resize
           .quality(90) // set JPEG quality
           // .greyscale() // set greyscale
-          .write(`${__dirname}/converted-files/${cFileName}${fileExt}`); // save
-          res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
-          
+          .write(`${__dirname}/converted-files/${cFileName}${fileExt}`); // save          
+        });
+        
+        res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`,(err)=>{
+          if(err){
+            console.log("file taking time");
+          }else{
+            setTimeout(function(){ console.log("File Downloaded"); }, 3000);
+          }
         });
       }
       // Convert in ODT format
