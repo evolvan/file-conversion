@@ -151,15 +151,103 @@ app.get("/", function(req, res){
       Jimp.read(file, (err, lenna) => {
         if (err) throw err;
         lenna
-          // .resize(600, 500) // resize
-          .quality(90) // set JPEG quality
-          // .greyscale() // set greyscale
+          .quality(90)
           .write(`${__dirname}/converted-files/${cFileName}${fileExt}`); // save          
         });
         
         res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`,(err)=>{
           if(err){
-            console.log("file taking time");
+            console.log("file taking time to Download");
+          }else{
+            setTimeout(function(){ console.log("File Downloaded"); }, 3000);
+          }
+        });
+      }
+            // Convert JPG-to-PNG
+            else if('.png'==fileExt){
+              console.log("Exist");
+            Jimp.read(file, (err, lenna) => {
+              if (err) throw err;
+              lenna
+                .quality(90)
+                .write(`${__dirname}/converted-files/${cFileName}${fileExt}`); // save          
+              });
+              
+              res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`,(err)=>{
+                if(err){
+                  console.log("file taking time to Download");
+                }else{
+                  setTimeout(function(){ console.log("File Downloaded"); }, 3000);
+                }
+              });
+            }
+            // Convert PNG-to-JPEG
+            else if('.jpeg'==fileExt){
+              console.log("Exist");
+            Jimp.read(file, (err, lenna) => {
+              if (err) throw err;
+              lenna
+                .quality(90)
+                .write(`${__dirname}/converted-files/${cFileName}${fileExt}`); // save          
+              });
+              
+              res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`,(err)=>{
+                if(err){
+                  console.log("file taking time to Download");
+                }else{
+                  setTimeout(function(){ console.log("File Downloaded"); }, 3000);
+                }
+              });
+            }
+      // Convert PNG-to-BMP
+      else if('.bmp'==fileExt){
+        console.log("Exist");
+      Jimp.read(file, (err, lenna) => {
+        if (err) throw err;
+        lenna
+          .quality(90)
+          .write(`${__dirname}/converted-files/${cFileName}${fileExt}`); // save          
+        });
+        
+        res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`,(err)=>{
+          if(err){
+            console.log("file taking time to Download");
+          }else{
+            setTimeout(function(){ console.log("File Downloaded"); }, 3000);
+          }
+        });
+      }
+      // Convert PNG-to-tiff
+      else if('.tiff'==fileExt){
+        console.log("Exist");
+      Jimp.read(file, (err, lenna) => {
+        if (err) throw err;
+        lenna
+          .quality(90)
+          .write(`${__dirname}/converted-files/${cFileName}${fileExt}`); // save          
+        });
+        
+        res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`,(err)=>{
+          if(err){
+            console.log("file taking time to Download");
+          }else{
+            setTimeout(function(){ console.log("File Downloaded"); }, 3000);
+          }
+        });
+      }
+      // Convert PNG-to-gif
+      else if('.gif'==fileExt){
+        console.log("Exist");
+      Jimp.read(file, (err, lenna) => {
+        if (err) throw err;
+        lenna
+          .quality(90)
+          .write(`${__dirname}/converted-files/${cFileName}${fileExt}`); // save          
+        });
+        
+        res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`,(err)=>{
+          if(err){
+            console.log("file taking time to Download");
           }else{
             setTimeout(function(){ console.log("File Downloaded"); }, 3000);
           }

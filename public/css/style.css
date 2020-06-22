@@ -26,10 +26,10 @@ body{
   animation: mymove 5s 1;
 }
 /* Header Animation Start*/
-@keyframes mymove {
+/* @keyframes mymove {
   from {left: -440px;color:#e52165;background: #fff;padding: 1em;}
   to {left: 0; color: #fff;}
-}
+} */
 /* Header Animation End */
 .upper-div #frmUploader{
   text-align: center;

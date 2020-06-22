@@ -13,16 +13,21 @@
     <div class="upper-div">
       <h1>Please Upload Your File</h1>
       <form id="frmUploader" enctype="multipart/form-data" action="/uploadfile" method="post">
-          <input type="file" name="imgUploader" multiple />
-          <button type="submit" name="submit" id="btnSubmit" value="Upload" >
-            <span></span>  
-            <span></span>  
-            <span></span>  
-            <span></span>  
-            Submit
-          </button>
+          <input type="file" name="imgUploader" id="imgUploader" multiple />
+
           <span id = "status"></span>
-      </form>
+          <!-- <p>The file extension is: <span id="output"></span></p> -->
+        </form>
+        <button type="submit" name="submit" id="btnSubmit" value="Upload">
+           
+          <span></span>  
+          <span></span>  
+          <span></span>  
+          <span></span>  
+          Submit
+        </button>
+        <div id="output">dd</div>
+          <button id="generate">Generate</button>
     </div>
 
     <div class="middle-div">
@@ -32,12 +37,17 @@
        <div class="inner-content">
            <p><%= fileName[i] %></p><br>
                <form action="/download/<%= fileName[i] %>" method="GET">
-                 Choose Converting Format : <select class="fileFormat" id = "fileFormat"name="fileExt" onchange="getSelectedValue();">
+                 <!-- Choose Converting Format : <select class="fileFormat" id = "fileFormat"name="fileExt" onchange="getSelectedValue();">
                      <option value=".pdf">.pdf</option>
                      <option value=".docx">.docx</option>
                      <option value=".doc">.doc</option>
                      <option value=".txt">.txt</option>
                      <option value=".jpg">.jpg</option>
+                     <option value=".jpeg">.jpeg</option>
+                     <option value=".png">.png</option>
+                     <option value=".bmp">.bmp</option>
+                     <option value=".tiff">.tiff</option>
+                     <option value=".gif">.gif</option>
                      <option value=".csv">.csv</option>
                      <option value=".odt">.odt</option>
                      <option value=".xlsm">.xlsm</option>
@@ -47,7 +57,7 @@
                      <option value=".rtf">.rtf</option>
                      <option value=".wpd">.wpd</option>
                      <option value=".pptx">.pptx</option>
-                 </select>
+                 </select> -->
                 <button type="submit" value="Download" id="btnDownload">
                   <span></span>
                   <span></span>

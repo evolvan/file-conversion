@@ -5,6 +5,7 @@
     "main": "server.js",
     "dependencies": {
         "body-parser": "^1.15.2",
+        "cors": "^2.8.5",
         "ejs": "^3.1.2",
         "express": "^4.14.0",
         "jimp": "^0.10.3",
@@ -15,6 +16,10 @@
         "pdf-to-text": "0.0.7",
         "tabula-js": "^1.0.1"
     },
+    "scripts": {
+        "start": "nodemon app.js"
+      },
+    "proxy": "http://localhost:5000",
     "author": {
         "name": "Sagar Kumar"
     }
