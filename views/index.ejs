@@ -17,17 +17,16 @@
 
           <span id = "status"></span>
           <!-- <p>The file extension is: <span id="output"></span></p> -->
-        </form>
-        <button type="submit" name="submit" id="btnSubmit" value="Upload">
+          <button type="submit" name="submit" id="btnSubmit" value="Upload">
            
-          <span></span>  
-          <span></span>  
-          <span></span>  
-          <span></span>  
-          Submit
-        </button>
-        <div id="output">dd</div>
-          <button id="generate">Generate</button>
+            <span></span>  
+            <span></span>  
+            <span></span>  
+            <span></span>  
+            Submit
+          </button>
+        </form>
+
     </div>
 
     <div class="middle-div">
@@ -35,8 +34,8 @@
 
       <% for(var i=0; i < fileName.length > 0; i++) {%>
        <div class="inner-content">
-           <p><%= fileName[i] %></p><br>
-               <form action="/download/<%= fileName[i] %>" method="GET">
+           <p id="e"><%= fileName[i] %></p><br>
+               <form action="/download/<%= fileName[i] %>" method="GET" id="downloadFile">
                  <!-- Choose Converting Format : <select class="fileFormat" id = "fileFormat"name="fileExt" onchange="getSelectedValue();">
                      <option value=".pdf">.pdf</option>
                      <option value=".docx">.docx</option>
