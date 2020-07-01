@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title>File Conversion Evolvan</title>
-    <link rel="stylesheet" href="/css/style.css">
-    
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/jquery.form.js"></script> 
-    <script src="js/main.js"></script>
-</head>
-<body>
-    <div class="upper-div">
+<%- include ('partials/header'); -%>
+
+<div class="upper-div">
       <h1>Please Upload Your File</h1>
       <form id="frmUploader" enctype="multipart/form-data" action="/uploadfile" method="post">
           <input type="file" name="imgUploader" id="imgUploader" multiple />
@@ -36,7 +26,7 @@
        <div class="inner-content">
            <p id="e"><%= fileName[i] %></p><br>
                <form action="/download/<%= fileName[i] %>" method="GET" id="downloadFile">
-                 <!-- Choose Converting Format : <select class="fileFormat" id = "fileFormat"name="fileExt" onchange="getSelectedValue();">
+                 Choose Converting Format : <select class="fileFormat" id = "fileFormat"name="fileExt" onchange="getSelectedValue();">
                      <option value=".pdf">.pdf</option>
                      <option value=".docx">.docx</option>
                      <option value=".doc">.doc</option>
@@ -56,7 +46,7 @@
                      <option value=".rtf">.rtf</option>
                      <option value=".wpd">.wpd</option>
                      <option value=".pptx">.pptx</option>
-                 </select> -->
+                 </select>
                 <button type="submit" value="Download" id="btnDownload">
                   <span></span>
                   <span></span>
@@ -69,6 +59,5 @@
 
       <% } %>
     </div>
-    
-</body>
-</html>
+<%- include ('partials/footer'); -%>
+

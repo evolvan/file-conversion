@@ -4,13 +4,64 @@
   box-sizing: border-box;
 }
 body{
+  background-color:#0d1137;
   max-width: 1200px;
   width: 100%;
   margin: auto;
   height: 100vh;
-  background-color:#0d1137;
 }
-
+/* .main-container{
+  
+  max-width: 1200px;
+  width: 100%;
+  margin: auto;
+  height: 100vh;
+} */
+/* ######################################################################### */
+                            /* Navigation css */
+/* ######################################################################### */
+.navbar{
+  display: flex;
+  align-items: center;
+  background:linear-gradient(120deg, transparent,#0d1137);
+  justify-content: space-between;
+}
+.header-logo{
+  padding: 5px;
+}
+.header-logo img{
+  width: 80px;
+  border-radius: 50%;
+}
+.main-menu ul{
+  display: flex;
+}
+.main-menu ul li{
+  list-style: none;
+  padding: 1em;
+  font-size: 16px;
+  justify-content: flex-end;
+}
+.main-menu ul li a{
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer; 
+}
+.main-menu ul li a:hover{
+  border-bottom: 1px solid #fff;
+}
+.menu-btn{
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #fff;
+  z-index: 2;
+  display: none;
+}
+/* ######################################################################### */
+                            /* Upper Div Uploading File css */
+/* ######################################################################### */
 .upper-div{
   background:linear-gradient(120deg, transparent,#e52165);
   color: #fff;
@@ -116,6 +167,9 @@ body{
   transition-delay: 0.75s;
 }
 /* Submit Button Animation End */
+/* ######################################################################### */
+                            /* Middle Div Downloading File css */
+/* ######################################################################### */
 .middle-div{
   padding: 1.5em;
   color: #fff;
@@ -214,4 +268,120 @@ body{
 }
 .fileFormat option{
   font-weight: bold;
+}
+.fileFormat option{
+  display:none;
+}
+/* ######################################################################### */
+                            /* Footer CSS */
+/* ######################################################################### */
+.footer-content-detail{
+  display: flex;
+  height: 100vh;
+  background-color: #0d1137;
+  width: 100%;
+  align-items: center;
+}
+.footer-content-detail .footer-content-about{
+  width: 100%;
+  color: #fff;
+  padding: .2em;
+}
+.footer-content-detail .footer-content-about img{
+  width: 80px;
+  border-radius: 50%;
+}
+.footer-content-detail .footer-content-about .footer-content{
+  font-size: 14px;
+  padding-top: 1em;
+}
+.footer-content-detail .footer-content-about i{
+  padding: 2px;
+  margin-top: 10px;
+}
+.footer-content-detail .footer-content-links{
+  width: 100%;
+}
+.footer-content-detail .footer-content-links h3{
+  color: #fff;
+}
+.footer-content-detail .footer-content-links ul{
+  padding: .5em;
+  
+}
+.footer-content-detail .footer-content-links ul li{
+  list-style: none;
+  padding: .3em;
+  font-size:14px ;
+}
+.footer-content-detail .footer-content-links ul li a{
+  text-decoration: none;
+  color: #fff;
+}
+.footer-content-detail .footer-content-links ul li a:hover{
+  /* border-bottom: 1px solid #000; */
+  padding-left: 1em;
+}
+.footer-content-detail .footer-content-map{
+  width: 100%;
+}
+.footer-content-detail .footer-content-map img{
+  width: 100%;
+  padding: .2em;
+}
+.footer-content-copyright{
+  width: 100%;
+  height: 10vh;
+  padding-top: 1em;
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+}
+/* ######################################################################### */
+                          /* media query */
+/* ######################################################################### */
+
+@media(max-width:700px){
+  .menu-btn{
+      display: block;
+  }
+  .main-menu ul{
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: #f2f2f2;
+      width: 50%;
+      height: 100%;
+      border-right:1px solid #ccc;
+      transform: translateX(-500px);
+      transition: transform 0.5s ease-in-out;
+  }
+  .main-menu ul li{
+      padding: 1em;
+      padding-left: 2em;
+      border-bottom: 1px solid #000;
+      font-size: 14px;
+  }
+  .main-menu ul li a{
+    color:#000;
+  }
+  .main-menu ul li:last-child{
+      border-bottom: 0;
+  }
+  .main-menu.show ul{
+      transform: translateX(-20px); 
+  }
+  .footer-content-detail{
+      display: block;
+  }
+  .footer-content-detail .footer-content-about{
+      width: 100%;
+  }
+  .footer-content-detail .footer-content-links{
+      width: 100%;
+  }
+  .footer-content-detail .footer-content-map{
+      width: 100%;
+  }
 }
