@@ -20,6 +20,14 @@
 
   --> remove backtick(``) from command before running. I used it to just highlight command.
 
+### Navigation Section
+
 ![Navigation Section](https://github.com/evolvan/file-conversion/blob/master/screenshots/home.png)
+
+### Content Section
+
 ![Content Section](https://github.com/evolvan/file-conversion/blob/master/screenshots/content.png)
+
+### Footer Section
+
 ![Footer Section](https://github.com/evolvan/file-conversion/blob/master/screenshots/footer.png)
