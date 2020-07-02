@@ -10,15 +10,15 @@ function getSelectedValue(){
 }
 window.onload = function(){ 
     // fileClass = document.getElementsByClassName(".inner-content");
-
-    fileName = document.querySelector('.inner-content p').innerHTML; 
-    for(let i of fileName){
-
+    let pa = document.getElementsByTagName("p");
+    for (var i = 0; i<pa.length; i++) {
+        fileName = pa[i].innerHTML;
+        // fileName = document.querySelector('#e').innerHTML; 
         console.log(fileName,"sagar");
         extension = fileName.split('.').pop(); 
         console.log(extension,"ddddddddddddddddddddd"); 
-    
-    }    
+    }
+       
     let displayOption = document.getElementsByTagName("option");
         
     document.getElementById('fileFormat').onclick = function() {
@@ -108,3 +108,12 @@ window.onload = function(){
 //    return false;
 //    });    
 // });
+
+window.onscroll = function() {myFunction()};
+
+function myFunction() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  document.getElementById("myBar").style.width = scrolled + "%";
+}

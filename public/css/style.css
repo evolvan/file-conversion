@@ -7,8 +7,20 @@ body{
   background-color:#0d1137;
   max-width: 1200px;
   width: 100%;
+  margin: 0;
   margin: auto;
   height: 100vh;
+}
+.progress-container {
+  width: 100%;
+  height: 5px;
+  background: #ccc;
+}
+
+.progress-bar {
+  height: 5px;
+  background: #e52165;
+  width: 0%;
 }
 /* .main-container{
   
@@ -20,10 +32,16 @@ body{
 /* ######################################################################### */
                             /* Navigation css */
 /* ######################################################################### */
+header{
+    position: fixed; 
+    width: 1200px;
+    top: 0;
+    z-index: 1;
+}
 .navbar{
   display: flex;
   align-items: center;
-  background:linear-gradient(120deg, transparent,#0d1137);
+  background:#0d1137;
   justify-content: space-between;
 }
 .header-logo{
@@ -48,7 +66,7 @@ body{
   cursor: pointer; 
 }
 .main-menu ul li a:hover{
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #e52165;
 }
 .menu-btn{
   cursor: pointer;
@@ -66,6 +84,7 @@ body{
   background:linear-gradient(120deg, transparent,#e52165);
   color: #fff;
   width: 100%;
+  margin-top: 6em;
   height: 500px;
   border-right: 2px solid #fff;
 }
@@ -301,6 +320,10 @@ body{
 }
 .footer-content-detail .footer-content-links{
   width: 100%;
+  padding-left: 0.3em;
+  padding-right: 0.3em;
+  border-left: 1px solid #e52165;
+  border-right: 1px solid #e52165;
 }
 .footer-content-detail .footer-content-links h3{
   color: #fff;
@@ -324,6 +347,9 @@ body{
 }
 .footer-content-detail .footer-content-map{
   width: 100%;
+  
+  padding-left: 0.3em;
+
 }
 .footer-content-detail .footer-content-map img{
   width: 100%;
@@ -340,12 +366,14 @@ body{
 /* ######################################################################### */
                           /* media query */
 /* ######################################################################### */
+@media only screen and (max-width: 1200px) and (min-width: 700px){
 
-@media(max-width:700px){
+}
+@media only screen and (max-width: 600px) and (min-width: 400px){
   .menu-btn{
       display: block;
   }
-  .main-menu ul{
+  header .main-menu ul{
       display: block;
       position: absolute;
       top: 0;
@@ -374,12 +402,20 @@ body{
   }
   .footer-content-detail{
       display: block;
+      justify-content: center;
+      text-align: center;
   }
   .footer-content-detail .footer-content-about{
       width: 100%;
   }
   .footer-content-detail .footer-content-links{
       width: 100%;
+      margin-top: 1em;
+      padding-top: 1em;
+      padding-bottom: 1em;
+      border-top: 1px solid #e52165;
+      margin-bottom: 1em;
+      border-bottom: 1px solid #e52165;
   }
   .footer-content-detail .footer-content-map{
       width: 100%;
