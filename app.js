@@ -68,6 +68,12 @@ app.get("/", function(req, res){
         (docBuffer) => {
           fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`, docBuffer);
           res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+          try {
+            fs.unlinkSync(file)
+            //file removed
+          } catch(err) {
+            console.error(err)
+          }
           
         }, (err) => {
             console.log(err);
@@ -86,6 +92,12 @@ app.get("/", function(req, res){
         (docBuffer) => {
           fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`, docBuffer);
           res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+          try {
+            fs.unlinkSync(file)
+            //file removed
+          } catch(err) {
+            console.error(err)
+          }
           
         }, (err) => {
             console.log(err);
@@ -105,6 +117,12 @@ app.get("/", function(req, res){
           (pdfBuffer) => {
             fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`, pdfBuffer);
             res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+            try {
+              fs.unlinkSync(file)
+              //file removed
+            } catch(err) {
+              console.error(err)
+            }
             
           }, (err) => {
             console.log(err);
@@ -127,6 +145,12 @@ app.get("/", function(req, res){
           if (err) throw(err);
           fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,data);
           res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
+          try {
+            fs.unlinkSync(file)
+            //file removed
+          } catch(err) {
+            console.error(err)
+          }
           
         });
       }
@@ -140,7 +164,12 @@ app.get("/", function(req, res){
           fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,data);
           console.log(data);
           res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
-          
+          try {
+            fs.unlinkSync(file)
+            //file removed
+          } catch(err) {
+            console.error(err)
+          }  
         });
       }
       // End Convert PDF-TO-CSV
@@ -162,6 +191,12 @@ app.get("/", function(req, res){
             setTimeout(function(){ console.log("File Downloaded"); }, 3000);
           }
         });
+        try {
+          fs.unlinkSync(file)
+          //file removed
+        } catch(err) {
+          console.error(err)
+        }
       }
             // Convert JPG-to-PNG
             else if('.png'==fileExt){
@@ -180,6 +215,12 @@ app.get("/", function(req, res){
                   setTimeout(function(){ console.log("File Downloaded"); }, 3000);
                 }
               });
+              try {
+                fs.unlinkSync(file)
+                //file removed
+              } catch(err) {
+                console.error(err)
+              }
             }
             // Convert PNG-to-JPEG
             else if('.jpeg'==fileExt){
@@ -198,6 +239,12 @@ app.get("/", function(req, res){
                   setTimeout(function(){ console.log("File Downloaded"); }, 3000);
                 }
               });
+              try {
+                fs.unlinkSync(file)
+                //file removed
+              } catch(err) {
+                console.error(err)
+              }
             }
       // Convert PNG-to-BMP
       else if('.bmp'==fileExt){
@@ -216,6 +263,12 @@ app.get("/", function(req, res){
             setTimeout(function(){ console.log("File Downloaded"); }, 3000);
           }
         });
+        try {
+          fs.unlinkSync(file)
+          //file removed
+        } catch(err) {
+          console.error(err)
+        }
       }
       // Convert PNG-to-tiff
       else if('.tiff'==fileExt){
@@ -234,6 +287,12 @@ app.get("/", function(req, res){
             setTimeout(function(){ console.log("File Downloaded"); }, 3000);
           }
         });
+        try {
+          fs.unlinkSync(file)
+          //file removed
+        } catch(err) {
+          console.error(err)
+        }
       }
       // Convert PNG-to-gif
       else if('.gif'==fileExt){
@@ -252,6 +311,12 @@ app.get("/", function(req, res){
             setTimeout(function(){ console.log("File Downloaded"); }, 3000);
           }
         });
+        try {
+          fs.unlinkSync(file)
+          //file removed
+        } catch(err) {
+          console.error(err)
+        }
       }
       // Convert in ODT format
       else if('.odt'==fileExt){
@@ -265,8 +330,14 @@ app.get("/", function(req, res){
             // Here in done you have pdf file which you can save or transfer in another stream
             fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,done);
             res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
-            
+            try {
+              fs.unlinkSync(file)
+              //file removed
+            } catch(err) {
+              console.error(err)
+            }
         });
+
       }
       // convert in xlsm
       else if('.xlsm'==fileExt){
@@ -280,7 +351,12 @@ app.get("/", function(req, res){
             // Here in done you have pdf file which you can save or transfer in another stream
             fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,done);
             res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
-            
+            try {
+              fs.unlinkSync(file)
+              //file removed
+            } catch(err) {
+              console.error(err)
+            }
         });
       }
       // convert in xlsx
@@ -295,7 +371,12 @@ app.get("/", function(req, res){
             // Here in done you have pdf file which you can save or transfer in another stream
             fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,done);
             res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
-            
+            try {
+              fs.unlinkSync(file)
+              //file removed
+            } catch(err) {
+              console.error(err)
+            }
         });
       }
       // convert in xls
@@ -310,7 +391,12 @@ app.get("/", function(req, res){
             // Here in done you have pdf file which you can save or transfer in another stream
             fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,done);
             res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
-            
+            try {
+              fs.unlinkSync(file)
+              //file removed
+            } catch(err) {
+              console.error(err)
+            }
         });
       }
       // convert in ods
@@ -325,7 +411,12 @@ app.get("/", function(req, res){
             // Here in done you have pdf file which you can save or transfer in another stream
             fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,done);
             res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
-            
+            try {
+              fs.unlinkSync(file)
+              //file removed
+            } catch(err) {
+              console.error(err)
+            }
         });
       }
       // convert in rtf
@@ -340,7 +431,12 @@ app.get("/", function(req, res){
             // Here in done you have pdf file which you can save or transfer in another stream
             fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,done);
             res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
-            
+            try {
+              fs.unlinkSync(file)
+              //file removed
+            } catch(err) {
+              console.error(err)
+            }
         });
       }
       // convert in wpd
@@ -355,7 +451,12 @@ app.get("/", function(req, res){
             // Here in done you have pdf file which you can save or transfer in another stream
             fs.writeFileSync(`${__dirname}/converted-files/${cFileName}${fileExt}`,done);
             res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
-            
+            try {
+              fs.unlinkSync(file)
+              //file removed
+            } catch(err) {
+              console.error(err)
+            }
         });
       }
       // convert in ppt
@@ -365,7 +466,12 @@ app.get("/", function(req, res){
         const readingFile = fs.readFileSync(file);
             pptx.generate(fs.createWriteStream(`${__dirname}/converted-files/${cFileName}${fileExt}`,readingFile));
             res.download(`${__dirname}/converted-files/${cFileName}${fileExt}`);
-            
+            try {
+              fs.unlinkSync(file)
+              //file removed
+            } catch(err) {
+              console.error(err)
+            }
       }
    else{
        console.log("Doesn't Exist");
